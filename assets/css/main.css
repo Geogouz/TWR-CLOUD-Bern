@@ -28,6 +28,24 @@ body {
 	line-height: 1;
 }
 
+.jtext {
+	text-align: justify;
+}
+
+.compact-table {
+	width: 100%;
+	font-size: 0.9em;
+}
+
+.compact-table th, .compact-table td {
+	border: 1px solid #ddd;
+	padding: 0 8px 0 8px;
+}
+
+.compact-table th {
+	background-color: #2e3842;
+}
+
 ol, ul {
 	list-style: none;
 }
@@ -228,7 +246,7 @@ input, select, textarea {
 	hr {
 		border: 0;
 		border-bottom: solid 2px #fff;
-		margin: 3em 0;
+		margin: 2em 0;
 	}
 
 		hr.major {
@@ -2141,7 +2159,6 @@ input, select, textarea {
 
 	ul {
 		list-style: disc;
-		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
 
@@ -2325,10 +2342,6 @@ input, select, textarea {
 
 /* Table */
 
-	.table-wrapper {
-		-webkit-overflow-scrolling: touch;
-		overflow-x: auto;
-	}
 
 	table {
 		margin: 0 0 2em 0;
@@ -2336,7 +2349,7 @@ input, select, textarea {
 	}
 
 		table tbody tr {
-			border: solid 1px #fff;
+			/* border: solid 1px #fff; */
 			border-left: 0;
 			border-right: 0;
 		}
@@ -2346,7 +2359,7 @@ input, select, textarea {
 			}
 
 		table td {
-			padding: 0.75em 0.75em;
+			padding: 0.4em 0.4em;
 		}
 
 		table th {
@@ -3140,11 +3153,11 @@ input, select, textarea {
 			background-color: #ffffff;
 			color: #4E4852;
 		}
-
+/*
 			.wrapper.style5 strong, .wrapper.style5 b {
 				color: #2E3842;
 			}
-
+*/
 			.wrapper.style5 h2, .wrapper.style5 h3, .wrapper.style5 h4, .wrapper.style5 h5, .wrapper.style5 h6 {
 				color: #2E3842;
 			}
@@ -3242,12 +3255,8 @@ input, select, textarea {
 				border-color: #dfdfdf;
 			}
 
-				.wrapper.style5 table tbody tr:nth-child(2n + 1) {
-					background-color: rgba(0, 0, 0, 0.0375);
-				}
-
-			.wrapper.style5 table th {
-				color: #2E3842;
+			.wrapper.style5 table tbody tr:nth-child(2n + 1) {
+				background-color: rgba(0, 0, 0, 0.0375);
 			}
 
 			.wrapper.style5 table thead {
@@ -3990,4 +3999,14 @@ input, select, textarea {
 
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
+	}
+
+	/* Add space between the icon and the text */
+	#menu ul li a.icon {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	#menu ul li a.icon::before {
+		margin-right: 8px; /* Adjust this value to add more or less space */
 	}
