@@ -55,7 +55,12 @@
 			}
 		}
 
-
+		.note {
+			background-color: #f8f9fa;
+			border-left: 4px solid #3498db;
+			padding: 15px;
+			margin: 20px 0;
+		}
 	</style>
 
 
@@ -73,7 +78,7 @@
 								<a href="#menu" class="menuToggle"><span>Menu</span></a>
 								<div id="menu">
 									<ul>
-										<li><a href="index.html"><img src="images/home.png" alt="Home TWR-CLOUD-Bern" style="width:15px; vertical-align:middle; margin-right:5px;"> Home</a></li>
+										<li><a href="index.html"><img src="content/images/home.png" alt="Home TWR-CLOUD-Bern" style="width:15px; vertical-align:middle; margin-right:5px;"> Home</a></li>
 										<li><a class="icon fa-lightbulb" href="methodology.html">Methodology</a></li>
 										<li><a class="icon fa-list-alt" href="dataset.html">Dataset</a></li>
 										<li><a class="icon fa-chart-bar" href="evaluation_framework.html">Evaluation Framework</a></li>
@@ -95,7 +100,7 @@
 									The experimental design and procedures used to produce the dataset, including node
 									deployment and data collection.
 								</p>
-								<div class="col-12"><span class="image fit"><img src="images/methodology.png" alt="" /></span></div>
+								<div class="col-12"><span class="image fit"><img src="content/images/methodology.png" alt="" /></span></div>
 
 								<hr />
 
@@ -194,6 +199,7 @@
 									both nodes benefit from finer precision.
 								</p>
 
+								<div class="note">
 								<p class="jtext">
 									The following visualization illustrates the impact of these additional messages on
 									error reduction in TWR. Picture each of the three lines as a synchronized timeline
@@ -232,17 +238,23 @@
 									<source src="content/ranging_error.mp4" type="video/mp4">
 									Your browser does not support the video tag.
 								</video>
+								</div>
 
-								<br><br>
+								<br>
 
 								<p class="jtext">
 									Our offered measurements are complemented by supportive metadata and statistics per
 									node, that describe the success rate of the UWB messages at second [s] granularity.
-									The overall data collection and ranging mechanism can be summarized as shown in the
-									provided Algorithm below, where each node was set to alternate between poller and
-									responder mode at six different listening periods.
-									The consideration of different periods was used to enable assessments on the impact
-									of message collisions, which have a direct Quality of service impact in RTLSs.
+									The overall data collection and ranging mechanism, which operates in a fully
+									unsynchronized manner without any time-division coordination or channel access
+									scheduling, can be summarized as shown in the provided Algorithm below. In this
+									implementation, each node alternates between poller and responder mode at six
+									different listening periods, continuously attempting rangings without central
+									coordination. While this approach leads to increased message collisions, it
+									represents a more realistic scenario for large-scale deployments where maintaining
+									time synchronization across all nodes would be impractical or too costly. The
+									consideration of different listening periods was used to enable assessments on the
+									impact of these collisions, which have a direct Quality of service impact in RTLSs.
 								</p>
 
 								<div class="algorithm-container">
@@ -338,7 +350,7 @@
 									sporadically.
 								</p>
 
-								<div class="col-12"><span class="image fit"><img src="images/node_deployment.jpg" alt="" /></span></div>
+								<div class="col-12"><span class="image fit"><img src="content/images/node_deployment.jpg" alt="" /></span></div>
 
 							</div>
 						</section>
@@ -354,15 +366,15 @@
 								<a href="content/twrcloudbern2024.bib" download="twrcloudbern2024.bib">BibTeX entry</a>
 							</header>
 						</div>
-						<div class="image-container" style="flex: 1; display: flex; justify-content: flex-start; gap: 20px;">
+						<div class="image-container" style="display: flex; justify-content: flex-start; gap: 20px;">
 							<div style="text-align: center;">
-								<img src="images/authors/Xenakis.png" alt="Dimitrios Xenakis" style="width: auto; height: 200px;">
+								<img src="content/images/authors/Xenakis.png" alt="Dimitrios Xenakis" style="width: auto; height: 150px;">
 							</div>
 							<div style="text-align: center;">
-								<img src="images/authors/DiMaio.png" alt="Antonio Di Maio" style="width: auto; height: 200px;">
+								<img src="content/images/authors/DiMaio.png" alt="Antonio Di Maio" style="width: auto; height: 150px;">
 							</div>
 							<div style="text-align: center;">
-								<img src="images/authors/Braun.png" alt="Torsten Braun" style="width: auto; height: 200px;">
+								<img src="content/images/authors/Braun.png" alt="Torsten Braun" style="width: auto; height: 150px;">
 							</div>
 						</div>
 					</div>

@@ -37,7 +37,7 @@
 								<a href="#menu" class="menuToggle"><span>Menu</span></a>
 								<div id="menu">
 									<ul>
-										<li><a href="index.html"><img src="images/home.png" alt="Home TWR-CLOUD-Bern" style="width:15px; vertical-align:middle; margin-right:5px;"> Home</a></li>
+										<li><a href="index.html"><img src="content/images/home.png" alt="Home TWR-CLOUD-Bern" style="width:15px; vertical-align:middle; margin-right:5px;"> Home</a></li>
 										<li><a class="icon fa-lightbulb" href="methodology.html">Methodology</a></li>
 										<li><a class="icon fa-list-alt" href="dataset.html">Dataset</a></li>
 										<li><a class="icon fa-chart-bar" href="evaluation_framework.html">Evaluation Framework</a></li>
@@ -60,7 +60,7 @@
 									instructions on accessing and interpreting the data.
 								</p>
 
-								<div class="col-12"><span class="image fit"><img src="images/dataset.jpg" alt="" /></span></div>
+								<div class="col-12"><span class="image fit"><img src="content/images/dataset.jpg" alt="" /></span></div>
 
 								<hr />
 
@@ -111,11 +111,9 @@
 									protocol resilience and network performance under realistic contention conditions.
 								</p>
 
-								<h2>Ranging Measurement Tables</h2>
+								<hr />
 
-								<p>The dataset contains ranging measurements collected using a 4-message TWR protocol implementation. The protocol extends traditional 2-3 message TWR by adding a fourth message that enables enhanced ranging estimates to be shared between nodes. Two complementary measurement tables are provided, capturing ranging events from both responder and poller perspectives, essential for evaluating end-to-end ranging performance.</p>
-
-								<h3>Table Structure and Contents</h3>
+								<h3>Ranging Measurement Tables</h3>
 
 								<h4>Responder Measurements (<code>Rangings at Responders.pkl</code>)</h4>
 								<p>Contains ~2.1M measurements recorded by nodes operating in responder mode during the TWR exchanges. Each measurement represents a successful ranging calculation after receiving the third message of the protocol.</p>
@@ -206,7 +204,7 @@
 
 								<p>The table structure is identical to the responder measurements but from the poller's perspective, with matching column names and data types.</p>
 
-								<h3>Relationship Between Tables</h3>
+								<h4>Relationship Between Tables</h4>
 								<div class="note">
 									<ul>
 										<li>The responder measurements (~2.1M entries) form a superset of the poller measurements (~1.8M entries)</li>
@@ -217,9 +215,11 @@
 									</ul>
 								</div>
 
-								<h2>Statistics Tables</h2>
+								<hr />
 
-								<h3>Responder Statistics (<code>Rangings at Responders (Stats).pkl</code>)</h3>
+								<h3>Statistics Tables</h3>
+
+								<h4>Responder Statistics (<code>Rangings at Responders (Stats).pkl</code>)</h4>
 								<p>Tracks node performance metrics in responder mode, sampled every second of operation. In this unsynchronized communication mode, nodes continuously listen for incoming ranging requests throughout their assigned listening period, resulting in detailed performance statistics.</p>
 
 								<table class="compact-table">
@@ -273,7 +273,7 @@
 									</tr>
 								</table>
 
-								<h3>Poller Statistics (<code>Rangings at Pollers (Stats).pkl</code>)</h3>
+								<h4>Poller Statistics (<code>Rangings at Pollers (Stats).pkl</code>)</h4>
 								<p>Tracks node performance metrics in poller mode, sampled every second of operation. Nodes continuously initiate ranging attempts to their neighbors without any time synchronization, providing statistics on the success rates and failure modes of the ranging protocol.</p>
 
 								<table class="compact-table">
@@ -327,7 +327,7 @@
 									</tr>
 								</table>
 
-								<h2>Loading the Dataset</h2>
+								<h3>Loading the Dataset</h3>
 
 								<p>The dataset can be loaded in Python using the pickle module:</p>
 
@@ -372,15 +372,15 @@ print(responding_measurements_df.head())</code></pre>
 								<a href="content/twrcloudbern2024.bib" download="twrcloudbern2024.bib">BibTeX entry</a>
 							</header>
 						</div>
-						<div class="image-container" style="flex: 1; display: flex; justify-content: flex-start; gap: 20px;">
+						<div class="image-container" style="display: flex; justify-content: flex-start; gap: 20px;">
 							<div style="text-align: center;">
-								<img src="images/authors/Xenakis.png" alt="Dimitrios Xenakis" style="width: auto; height: 200px;">
+								<img src="content/images/authors/Xenakis.png" alt="Dimitrios Xenakis" style="width: auto; height: 150px;">
 							</div>
 							<div style="text-align: center;">
-								<img src="images/authors/DiMaio.png" alt="Antonio Di Maio" style="width: auto; height: 200px;">
+								<img src="content/images/authors/DiMaio.png" alt="Antonio Di Maio" style="width: auto; height: 150px;">
 							</div>
 							<div style="text-align: center;">
-								<img src="images/authors/Braun.png" alt="Torsten Braun" style="width: auto; height: 200px;">
+								<img src="content/images/authors/Braun.png" alt="Torsten Braun" style="width: auto; height: 150px;">
 							</div>
 						</div>
 					</div>
