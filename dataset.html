@@ -116,7 +116,11 @@
 								<h3>Ranging Measurement Tables</h3>
 
 								<h4>Responder Measurements (<code>Rangings at Responders.pkl</code>)</h4>
-								<p>Contains ~2.1M measurements recorded by nodes operating in responder mode during the TWR exchanges. Each measurement represents a successful ranging calculation after receiving the third message of the protocol.</p>
+								<p class="jtext">
+									Contains ~2.1M measurements recorded by nodes operating in responder mode during the
+									TWR exchanges. Each measurement represents a successful ranging calculation after
+									receiving the third message of the protocol.
+								</p>
 
 								<table class="compact-table">
 									<tr>
@@ -129,18 +133,18 @@
 										<td>Scan_ID</td>
 										<td>int</td>
 										<td>-</td>
-										<td>Measurement scan identifier (1-11 for training, 12 for evaluation)</td>
+										<td>Survey scan identifier (1-11 for training, 12 for evaluation)</td>
 									</tr>
 									<tr>
 										<td>Timestamp</td>
 										<td>int</td>
-										<td>nanoseconds</td>
+										<td>[ns]</td>
 										<td>Unix timestamp when ranging measurement was recorded</td>
 									</tr>
 									<tr>
 										<td>Listening_Period</td>
 										<td>int</td>
-										<td>milliseconds</td>
+										<td>[ms]</td>
 										<td>Active listening duration (1,5,10,20,30,40,50) for receiving ranging requests</td>
 									</tr>
 									<tr>
@@ -158,7 +162,7 @@
 									<tr>
 										<td>Responder_X/Y/Z</td>
 										<td>float</td>
-										<td>meters</td>
+										<td>[m]</td>
 										<td>Ground truth coordinates of responder from LiDAR scan</td>
 									</tr>
 									<tr>
@@ -176,19 +180,19 @@
 									<tr>
 										<td>Poller_X/Y/Z</td>
 										<td>float</td>
-										<td>meters</td>
+										<td>[m]</td>
 										<td>Ground truth coordinates of poller from LiDAR scan</td>
 									</tr>
 									<tr>
 										<td>Node_Distance_3D</td>
 										<td>float</td>
-										<td>centimeters</td>
+										<td>[cm]</td>
 										<td>True Euclidean distance between nodes based on ground truth positions</td>
 									</tr>
 									<tr>
 										<td>ToF</td>
 										<td>float</td>
-										<td>nanoseconds</td>
+										<td>[ns]</td>
 										<td>Measured Time of Flight from TWR exchange</td>
 									</tr>
 									<tr>
@@ -200,17 +204,20 @@
 								</table>
 
 								<h4>Poller Measurements (<code>Rangings at Pollers.pkl</code>)</h4>
-								<p>Contains ~1.8M measurements recorded by nodes operating in poller mode. Each measurement represents a complete TWR exchange where the enhanced ranging estimate was successfully received via the fourth message.</p>
-
-								<p>The table structure is identical to the responder measurements but from the poller's perspective, with matching column names and data types.</p>
+								<p class="jtext">
+									Contains ~1.9M measurements recorded by nodes operating in poller mode. Each
+									measurement represents a complete TWR exchange where the enhanced ranging estimate
+									was successfully received via the fourth message. The table structure is identical
+									to the responder measurements but from the poller's perspective, with matching
+									column names and data types.
+								</p>
 
 								<h4>Relationship Between Tables</h4>
 								<div class="note">
 									<ul>
-										<li>The responder measurements (~2.1M entries) form a superset of the poller measurements (~1.8M entries)</li>
+										<li>The responder measurements (~2.1M entries) form a superset of the poller measurements (~1.9M entries)</li>
 										<li>The difference in entries (~300K) represents TWR exchanges where the enhanced estimate was calculated at the responder but the fourth message failed to reach the poller</li>
 										<li>Each successful poller measurement has a corresponding responder measurement with matching timestamp and swapped node IDs</li>
-										<li>The ToF values between corresponding measurements may differ slightly due to the different calculation points in the TWR exchange</li>
 										<li>All measurements were collected under unsynchronized operation, with nodes continuously attempting ranges without coordinated scheduling</li>
 									</ul>
 								</div>
@@ -220,56 +227,84 @@
 								<h3>Statistics Tables</h3>
 
 								<h4>Responder Statistics (<code>Rangings at Responders (Stats).pkl</code>)</h4>
-								<p>Tracks node performance metrics in responder mode, sampled every second of operation. In this unsynchronized communication mode, nodes continuously listen for incoming ranging requests throughout their assigned listening period, resulting in detailed performance statistics.</p>
+								<p class="jtext">
+									Tracks node performance metrics in responder mode, sampled every second of
+									operation. In this unsynchronized communication mode, nodes continuously listen for
+									incoming ranging requests throughout their assigned listening period.
+								</p>
 
 								<table class="compact-table">
 									<tr>
 										<th>Column</th>
+										<th>Type</th>
+										<th>Unit</th>
 										<th>Description</th>
 									</tr>
 									<tr>
 										<td>Scan_ID</td>
-										<td>Identifier for the measurement scan (1-12, where 12 is evaluation scan)</td>
+										<td>int</td>
+										<td>-</td>
+										<td>Survey scan identifier (1-11 for training, 12 for evaluation)</td>
 									</tr>
 									<tr>
 										<td>Timestamp</td>
-										<td>Unix timestamp in nanoseconds marking the start of the statistics period</td>
+										<td>int</td>
+										<td>[ns]</td>
+										<td>Unix timestamp marking when node reported its operational statistics for the previous 1-second period</td>
 									</tr>
 									<tr>
 										<td>Listening_Period</td>
-										<td>Duration in milliseconds (1,5,10,20,30,40,50) during which the node listens for messages</td>
+										<td>int</td>
+										<td>[ms]</td>
+										<td>Period (1,5,10,20,30,40,50) defining how long the node listens for incoming ranging requests in its responding phase, before alternating back to poller role</td>
 									</tr>
 									<tr>
 										<td>Responder_ID</td>
+										<td>int</td>
+										<td>-</td>
 										<td>ID of the node operating in responder mode (1-40)</td>
 									</tr>
 									<tr>
 										<td>Responder_Pos_ID</td>
+										<td>int</td>
+										<td>-</td>
 										<td>Position ID where the responder was deployed (1-170)</td>
 									</tr>
 									<tr>
 										<td>Responder_X/Y/Z</td>
-										<td>Ground truth coordinates of responder position in meters</td>
+										<td>float</td>
+										<td>[m]</td>
+										<td>Ground truth coordinates of responder position</td>
 									</tr>
 									<tr>
 										<td>Successful Responds</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Number of complete TWR exchanges where responder successfully sent its enhanced estimate</td>
 									</tr>
 									<tr>
 										<td>Responding Attempts</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Total number of attempted responses to incoming ranging requests</td>
 									</tr>
 									<tr>
 										<td>No Valid TX1</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Count of failed receptions of initial poll messages (TX1)</td>
 									</tr>
 									<tr>
 										<td>No Valid TX3</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Count of failed receptions of final messages (TX3)</td>
 									</tr>
 									<tr>
 										<td>Class</td>
-										<td>"Train" or "Eval" indicating dataset split</td>
+										<td>string</td>
+										<td>-</td>
+										<td>Dataset split indicator ("Train" or "Eval")</td>
 									</tr>
 								</table>
 
@@ -279,53 +314,79 @@
 								<table class="compact-table">
 									<tr>
 										<th>Column</th>
+										<th>Type</th>
+										<th>Unit</th>
 										<th>Description</th>
 									</tr>
 									<tr>
 										<td>Scan_ID</td>
-										<td>Identifier for the measurement scan (1-12, where 12 is evaluation scan)</td>
+										<td>int</td>
+										<td>-</td>
+										<td>Survey scan identifier (1-11 for training, 12 for evaluation)</td>
 									</tr>
 									<tr>
 										<td>Timestamp</td>
-										<td>Unix timestamp in nanoseconds marking the start of the statistics period</td>
+										<td>int</td>
+										<td>[ns]</td>
+										<td>Unix timestamp marking when node reported its operational statistics for the previous 1-second period</td>
 									</tr>
 									<tr>
 										<td>Listening_Period</td>
-										<td>Duration in milliseconds (1,5,10,20,30,40,50) for the polling cycle</td>
+										<td>int</td>
+										<td>[ms]</td>
+										<td>Period (1,5,10,20,30,40,50) defining how long the node listens for incoming ranging requests in its responding phase, before alternating back to poller role</td>
 									</tr>
 									<tr>
 										<td>Poller_ID</td>
+										<td>int</td>
+										<td>-</td>
 										<td>ID of the node operating in poller mode (1-40)</td>
 									</tr>
 									<tr>
 										<td>Poller_Pos_ID</td>
+										<td>int</td>
+										<td>-</td>
 										<td>Position ID where the poller was deployed (1-170)</td>
 									</tr>
 									<tr>
 										<td>Poller_X/Y/Z</td>
-										<td>Ground truth coordinates of poller position in meters</td>
+										<td>float</td>
+										<td>[m]</td>
+										<td>Ground truth coordinates of poller position</td>
 									</tr>
 									<tr>
 										<td>Successful Polls</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Number of complete TWR exchanges where poller received the enhanced estimate</td>
 									</tr>
 									<tr>
 										<td>Polling Attempts</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Total number of initiated ranging attempts</td>
 									</tr>
 									<tr>
 										<td>No Valid TX2</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Count of failed receptions of response messages (TX2)</td>
 									</tr>
 									<tr>
 										<td>No Valid TX4</td>
+										<td>int</td>
+										<td>count</td>
 										<td>Count of failed receptions of enhanced estimate messages (TX4)</td>
 									</tr>
 									<tr>
 										<td>Class</td>
-										<td>"Train" or "Eval" indicating dataset split</td>
+										<td>string</td>
+										<td>-</td>
+										<td>Dataset split indicator ("Train" or "Eval")</td>
 									</tr>
 								</table>
+
+								<hr />
 
 								<h3>Loading the Dataset</h3>
 
