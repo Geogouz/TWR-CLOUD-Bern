@@ -13,14 +13,13 @@
 	</head>
 
 	<style>
-
 		.note {
 			background-color: #f8f9fa;
 			border-left: 4px solid #3498db;
 			padding: 15px;
 			margin: 20px 0;
+			font-size: 15px;
 		}
-
 	</style>
 
 	<body>
@@ -145,7 +144,7 @@
 										<td>Listening_Period</td>
 										<td>int</td>
 										<td>[ms]</td>
-										<td>Active listening duration (1,5,10,20,30,40,50) for receiving ranging requests</td>
+										<td>Period (1,5,10,20,30,40,50) defining how long the node listens for incoming ranging requests in its responding phase, before alternating back to poller role</td>
 									</tr>
 									<tr>
 										<td>Responder_ID</td>
@@ -157,7 +156,7 @@
 										<td>Responder_Pos_ID</td>
 										<td>int</td>
 										<td>-</td>
-										<td>Deployment position identifier for responder (1-170)</td>
+										<td>Deployment position identifier for responder (1-170) <a href="javascript:void(window.open('content/images/node_deployment.jpg', '_blank'));">[Map]</a></td>
 									</tr>
 									<tr>
 										<td>Responder_X/Y/Z</td>
@@ -212,8 +211,8 @@
 									column names and data types.
 								</p>
 
-								<h4>Relationship Between Tables</h4>
 								<div class="note">
+									<h4>Relationship Between Tables</h4>
 									<ul>
 										<li>The responder measurements (~2.1M entries) form a superset of the poller measurements (~1.9M entries)</li>
 										<li>The difference in entries (~300K) represents TWR exchanges where the enhanced estimate was calculated at the responder but the fourth message failed to reach the poller</li>
@@ -226,11 +225,17 @@
 
 								<h3>Statistics Tables</h3>
 
+								<p class="jtext">
+									During each 1-second monitoring window, nodes alternate multiple times between
+									responding and polling roles, continuously collecting performance metrics for both
+									modes of operation in this unsynchronized communication scheme.
+								</p>
+
 								<h4>Responder Statistics (<code>Rangings at Responders (Stats).pkl</code>)</h4>
 								<p class="jtext">
-									Tracks node performance metrics in responder mode, sampled every second of
-									operation. In this unsynchronized communication mode, nodes continuously listen for
-									incoming ranging requests throughout their assigned listening period.
+									Track the number of received ranging requests, successful responses, and message
+									failures that occurred while node was operating as responder within each 1-second
+									window.
 								</p>
 
 								<table class="compact-table">
@@ -268,7 +273,7 @@
 										<td>Responder_Pos_ID</td>
 										<td>int</td>
 										<td>-</td>
-										<td>Position ID where the responder was deployed (1-170)</td>
+										<td>Position ID from where the node is responding (1-170) <a href="javascript:void(window.open('content/images/node_deployment.jpg', '_blank'));">[Map]</a></td>
 									</tr>
 									<tr>
 										<td>Responder_X/Y/Z</td>
@@ -309,7 +314,11 @@
 								</table>
 
 								<h4>Poller Statistics (<code>Rangings at Pollers (Stats).pkl</code>)</h4>
-								<p>Tracks node performance metrics in poller mode, sampled every second of operation. Nodes continuously initiate ranging attempts to their neighbors without any time synchronization, providing statistics on the success rates and failure modes of the ranging protocol.</p>
+								<p class="jtext">
+									Tracks the number of initiated ranging requests, completed exchanges, and message
+									failures that occurred while node was operating as poller within each 1-second
+									window.
+								</p>
 
 								<table class="compact-table">
 									<tr>
@@ -346,7 +355,7 @@
 										<td>Poller_Pos_ID</td>
 										<td>int</td>
 										<td>-</td>
-										<td>Position ID where the poller was deployed (1-170)</td>
+										<td>Position ID from where the node is polling (1-170) <a href="javascript:void(window.open('content/images/node_deployment.jpg', '_blank'));">[Map]</a></td>
 									</tr>
 									<tr>
 										<td>Poller_X/Y/Z</td>
